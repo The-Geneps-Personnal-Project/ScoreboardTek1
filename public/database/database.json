@@ -1,0 +1,40 @@
+{
+  "teams": [
+    {
+      "id": 1,
+      "name": "Team 1",
+      "logo": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+      "score": [{}]
+    },
+    {
+      "id": 2,
+      "name": "Team 2",
+      "logo": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+      "score": [{}]
+    },
+    {
+      "id": 3,
+      "name": "Team 3",
+      "logo": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+      "score": [{}]
+    },
+    {
+      "id": 4,
+      "name": "Team 4",
+      "logo": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+      "score": [{}]
+    },
+    {
+      "id": 5,
+      "name": "Team 5",
+      "logo": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+      "score": [{}]
+    },
+    {
+      "id": 6,
+      "name": "Team 6",
+      "logo": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+      "score": [{}]
+    }
+  ]
+}
