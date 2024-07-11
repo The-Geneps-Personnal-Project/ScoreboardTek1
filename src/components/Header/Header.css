@@ -1,0 +1,19 @@
+.Header {
+  border: solid;
+  padding-left: 10px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  background-color: #000;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.7),
+    0 0 30px rgba(0, 255, 255, 0.7), 0 0 40px rgba(0, 255, 255, 0.7),
+    0 0 50px rgba(255, 0, 255, 0.7);
+  border-color: linear-gradient(45deg, cyan, magenta) 1;
+}
+
+.Header-name {
+  padding-right: 250px;
+}
+
+.Header-points {
+  padding-right: 30px;
+}
