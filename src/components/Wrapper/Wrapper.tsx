@@ -2,14 +2,23 @@ import React from "react";
 
 import "./Wrapper.css";
 
-import { Box } from "@mui/material";
-
 import { WrapperProps } from "./Wrapper.props";
 
-export const Wrapper = (props: WrapperProps) => {
+import scoreRedFrame from "../../assets/ScoreRedFrame.png";
+import scoreBlackFrame from "../../assets/ScoreBlackFrame.png";
+
+export const Wrapper: React.FC<WrapperProps> = (props) => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }} className="Wrapper">
+    <div className="Wrapper">
+      <div
+        className="ScoreRedFrame"
+        style={{ backgroundImage: `url(${scoreRedFrame})` }}
+      />
+      <div
+        className="ScoreBlackFrame"
+        style={{ backgroundImage: `url(${scoreBlackFrame})` }}
+      />
       {props.children}
-    </Box>
+    </div>
   );
 };
