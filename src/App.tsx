@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import "./Theme.css";
 
-import { Header } from "./components/Header/Header";
 import { Wrapper } from "./components/Wrapper/Wrapper";
 import { Teams } from "./components/Teams/Teams";
+import { Background } from "./components/Background/Background";
 
 interface TeamInfo {
   id: number;
@@ -56,19 +56,20 @@ function App() {
 
   return (
     <>
-      <Wrapper>
-        <Header />
-        {sortedTeams.map((item, index) => (
-          <Teams
-            key={item.id}
-            name={item.name}
-            logo={item.logo}
-            score={item.score}
-            rank={index + 1}
-            maxScore={maxScore}
-          />
-        ))}
-      </Wrapper>
+      <Background teamNumber={data.teams.length}>
+        <Wrapper>
+          {sortedTeams.map((item, index) => (
+            <Teams
+              key={item.id}
+              name={item.name}
+              logo={item.logo}
+              score={item.score}
+              rank={index + 1}
+              maxScore={maxScore}
+            />
+          ))}
+        </Wrapper>
+      </Background>
     </>
   );
 }

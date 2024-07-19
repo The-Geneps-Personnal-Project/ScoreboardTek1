@@ -1,5 +1,28 @@
 .Wrapper {
-  margin-left: 150px;
-  margin-right: 100px;
-  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 350px;
+  padding-right: 375px;
+  padding-top: 220px;
+  position: relative;
+}
+
+.ScoreRedFrame {
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  width: 1250px;
+  height: 640px;
+  position: absolute;
+  padding-top: 30px;
+}
+
+.ScoreBlackFrame {
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  width: 1230px;
+  height: 640px;
+  position: absolute;
+  padding-left: 50px;
 }
