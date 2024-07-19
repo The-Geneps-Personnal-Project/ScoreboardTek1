@@ -2,9 +2,8 @@
   display: flex;
   flex-direction: column;
   padding-left: 350px;
-  padding-right: 375px;
-  padding-top: 20px;
   position: relative;
+  width: 100%;
 }
 
 .ScoreRedFrame {
@@ -14,7 +13,7 @@
   width: 1250px;
   height: 640px;
   position: absolute;
-  padding-top: 290px;
+  padding-top: 390px;
 }
 
 .ScoreBlackFrame {
@@ -25,5 +24,5 @@
   height: 640px;
   position: absolute;
   padding-left: 50px;
-  padding-top: 270px;
+  padding-top: 370px;
 }
