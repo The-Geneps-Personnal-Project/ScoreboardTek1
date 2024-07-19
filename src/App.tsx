@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import "./Theme.css";
 
+import { Header } from "./components/Header/Header";
 import { Wrapper } from "./components/Wrapper/Wrapper";
 import { Teams } from "./components/Teams/Teams";
 import { Background } from "./components/Background/Background";
@@ -58,6 +59,7 @@ function App() {
     <>
       <Background teamNumber={data.teams.length}>
         <Wrapper>
+          <Header />
           {sortedTeams.map((item, index) => (
             <Teams
               key={item.id}
