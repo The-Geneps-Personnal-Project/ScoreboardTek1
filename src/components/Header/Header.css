@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "Cyberglitch";
+  src: url("../../assets/fonts/Demosdcyberglitch-yw6GM.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.Header {
+  font-family: "Cyberglitch";
+  font-size: 180px;
+  padding-left: 80px;
+}
