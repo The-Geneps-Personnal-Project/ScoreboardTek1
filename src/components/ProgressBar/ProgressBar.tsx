@@ -23,8 +23,6 @@ const ProgressBar = styled(LinearProgress, {
 }));
 
 export default function ProgressBarComponent(props: ProgressBarProps) {
-  console.log(props);
-
   return (
     <div className="ProgressBar">
       <ProgressBar
