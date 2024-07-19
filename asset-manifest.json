@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ScoreboardTek1/static/css/main.ecd67cdf.css",
-    "main.js": "/ScoreboardTek1/static/js/main.047b3c74.js",
-    "static/js/453.68693753.chunk.js": "/ScoreboardTek1/static/js/453.68693753.chunk.js",
+    "main.js": "/ScoreboardTek1/static/js/main.5101b436.js",
+    "static/js/453.11aa8461.chunk.js": "/ScoreboardTek1/static/js/453.11aa8461.chunk.js",
     "static/media/BackgroundDecoration.png": "/ScoreboardTek1/static/media/BackgroundDecoration.ec08a91c730caaf15d3d.png",
     "static/media/Revamped.otf": "/ScoreboardTek1/static/media/Revamped.fc341b3b7578ed3b3731.otf",
     "static/media/ScoreRedFrame.png": "/ScoreboardTek1/static/media/ScoreRedFrame.30b2120212ad73582478.png",
@@ -10,11 +10,11 @@
     "static/media/Demosdcyberglitch-yw6GM.ttf": "/ScoreboardTek1/static/media/Demosdcyberglitch-yw6GM.ad21887a0de0fa8ba855.ttf",
     "index.html": "/ScoreboardTek1/index.html",
     "main.ecd67cdf.css.map": "/ScoreboardTek1/static/css/main.ecd67cdf.css.map",
-    "main.047b3c74.js.map": "/ScoreboardTek1/static/js/main.047b3c74.js.map",
-    "453.68693753.chunk.js.map": "/ScoreboardTek1/static/js/453.68693753.chunk.js.map"
+    "main.5101b436.js.map": "/ScoreboardTek1/static/js/main.5101b436.js.map",
+    "453.11aa8461.chunk.js.map": "/ScoreboardTek1/static/js/453.11aa8461.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ecd67cdf.css",
-    "static/js/main.047b3c74.js"
+    "static/js/main.5101b436.js"
   ]
 }
