@@ -8,6 +8,8 @@ import RedTeam from "../../assets/RedTeam.png";
 import BlueTeam from "../../assets/BlueTeam.png";
 import GreenTeam from "../../assets/GreenTeam.png";
 import PinkTeam from "../../assets/PinkTeam.png";
+import YellowTeam from "../../assets/YellowTeam.png";
+import PurpleTeam from "../../assets/PurpleTeam.png";
 
 export const Teams: React.FC<TeamsProps> = (props) => {
   const { name, logo, score, rank, maxScore } = props;
@@ -27,11 +29,15 @@ export const Teams: React.FC<TeamsProps> = (props) => {
       case 1:
         return "#C5102C";
       case 2:
-        return "#3A0BF8";
-      case 3:
-        return "#11B75E";
-      default:
         return "#B708BA";
+      case 3:
+        return "#5E23BE";
+      case 4:
+        return "#11B75E";
+      case 5:
+        return "#AAB711";
+      default:
+        return "#9213E7";
     }
   }
 
@@ -40,11 +46,15 @@ export const Teams: React.FC<TeamsProps> = (props) => {
       case 1:
         return RedTeam;
       case 2:
-        return BlueTeam;
-      case 3:
-        return GreenTeam;
-      default:
         return PinkTeam;
+      case 3:
+        return BlueTeam;
+      case 4:
+        return GreenTeam;
+      case 5:
+        return YellowTeam;
+      default:
+        return PurpleTeam;
     }
   }
 
