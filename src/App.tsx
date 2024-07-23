@@ -8,6 +8,8 @@ import { Wrapper } from "./components/Wrapper/Wrapper";
 import { Teams } from "./components/Teams/Teams";
 import { Background } from "./components/Background/Background";
 
+import Notif from "./assets/Notif.png";
+
 export interface TeamInfo {
   id: number;
   name: string;
@@ -62,6 +64,10 @@ function App() {
           <Header />
           <Teams teams={sortedTeams} maxScore={maxScore} />
           <div className="App-footer">tais toi</div>
+          <div
+            className="App-notif"
+            style={{ backgroundImage: `url(${Notif})` }}
+          />
         </Wrapper>
       </Background>
     </>

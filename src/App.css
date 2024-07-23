@@ -37,11 +37,21 @@
 
 .App-footer {
   font-family: "Vifam";
-  font-size: 2vh;
+  font-size: 4vh;
   color: #f8550f;
-  bottom: 10vh;
+  bottom: 8vh;
   left: 5vh;
   position: absolute;
+}
+
+.App-notif {
+  position: relative;
+  margin-top: 10vh;
+  margin-left: 150vh;
+  height: 7vh;
+  width: 7vh;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 @keyframes App-logo-spin {
