@@ -33,23 +33,6 @@
         "julien": 80,
         "antoine": 5
       }
-    },
-    {
-      "id": 5,
-      "name": "Code Warrios",
-      "logo": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-      "score": {
-        "rush": 50,
-        "seb": 10
-      }
-    },
-    {
-      "id": 6,
-      "name": "Team 6",
-      "logo": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-      "score": {
-        "gryffindor": 100
-      }
     }
   ]
 }

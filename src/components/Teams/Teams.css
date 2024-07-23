@@ -7,29 +7,38 @@
 
 .Teams {
   font-family: "Revamped";
+  font-size: 3.6vh;
+  font-weight: bold;
+  padding-top: 5vh;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin-left: 83vh;
+}
+
+.TeamsContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 36px;
-  font-weight: bold;
-  padding-top: 20px;
-  z-index: 1;
+  width: 100%;
 }
 
 .Teams-name {
   width: fit-content;
   height: 100%;
   display: flex;
-  padding-left: 10px;
-  padding-bottom: 10px;
+  padding-left: 1vh;
+  padding-bottom: 1vh;
 }
 
 .Teams-logo-wrapper {
   background-repeat: no-repeat;
   background-position: center;
-  margin-left: 75px;
-  width: 145px;
-  height: 110px;
+  background-size: cover;
+  width: 14.5vh;
+  height: 11vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,8 +52,8 @@
 
 .Teams-score {
   display: flex;
-  padding-left: 30px;
-  padding-bottom: 45px;
-  width: 120px;
+  padding-left: 3vh;
+  padding-bottom: 4.5vh;
+  width: 12vh;
   height: fit-content;
 }

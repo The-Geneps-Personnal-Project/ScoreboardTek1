@@ -1,9 +1,8 @@
 import React from "react";
 
+import { TeamInfo } from "../../App";
+
 export type TeamsProps = {
-  name: string;
-  logo: string;
-  score?: Record<string, number>;
-  rank: number;
+  teams: TeamInfo[];
   maxScore: number;
 } & React.HTMLAttributes<HTMLDivElement>;

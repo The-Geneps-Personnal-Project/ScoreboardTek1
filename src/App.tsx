@@ -8,7 +8,7 @@ import { Wrapper } from "./components/Wrapper/Wrapper";
 import { Teams } from "./components/Teams/Teams";
 import { Background } from "./components/Background/Background";
 
-interface TeamInfo {
+export interface TeamInfo {
   id: number;
   name: string;
   logo: string;
@@ -24,7 +24,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/database/database.json");
+      const response = await fetch("/ScoreboardTek1/database/database.json");
       const data = await response.json();
       setData(data);
     } catch (error) {
@@ -60,16 +60,8 @@ function App() {
       <Background teamNumber={data.teams.length}>
         <Wrapper>
           <Header />
-          {sortedTeams.map((item, index) => (
-            <Teams
-              key={item.id}
-              name={item.name}
-              logo={item.logo}
-              score={item.score}
-              rank={index + 1}
-              maxScore={maxScore}
-            />
-          ))}
+          <Teams teams={sortedTeams} maxScore={maxScore} />
+          <div className="App-footer">tais toi</div>
         </Wrapper>
       </Background>
     </>

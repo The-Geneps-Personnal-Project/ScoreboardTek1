@@ -8,7 +8,7 @@ const ProgressBar = styled(LinearProgress, {
   shouldForwardProp: (prop) =>
     prop !== "barColor" && prop !== "backgroundColor",
 })<ProgressBarProps>(({ theme, barColor, backgroundColor }) => ({
-  height: 50,
+  height: "5vh",
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor:
