@@ -1,6 +1,14 @@
 .Header {
-  margin-left: 20px;
+  margin-top: 1vh;
+  display: flex;
+  justify-content: center;
   width: 100%;
-  height: 180px;
+}
+
+.HeaderImage {
+  width: 123vh;
+  height: 18vh;
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 }

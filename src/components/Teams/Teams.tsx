@@ -12,19 +12,13 @@ import YellowTeam from "../../assets/YellowTeam.png";
 import PurpleTeam from "../../assets/PurpleTeam.png";
 
 export const Teams: React.FC<TeamsProps> = (props) => {
-  const { name, logo, score, rank, maxScore } = props;
+  const { teams, maxScore } = props;
 
-  function getScore() {
-    let total = 0;
-    for (const key in score) {
-      if (score.hasOwnProperty(key)) {
-        total += score[key];
-      }
-    }
-    return total;
+  function getScore(score: Record<string, number>) {
+    return Object.values(score).reduce((total, value) => total + value, 0);
   }
 
-  function getBarColor() {
+  function getBarColor(rank: number) {
     switch (rank) {
       case 1:
         return "#C5102C";
@@ -41,7 +35,7 @@ export const Teams: React.FC<TeamsProps> = (props) => {
     }
   }
 
-  function getLogoColor() {
+  function getLogoColor(rank: number) {
     switch (rank) {
       case 1:
         return RedTeam;
@@ -58,27 +52,35 @@ export const Teams: React.FC<TeamsProps> = (props) => {
     }
   }
 
-  const progressBarValue = (getScore() / maxScore) * 100;
-
   return (
     <div className="Teams">
-      <div
-        className="Teams-logo-wrapper"
-        style={{ backgroundImage: `url(${getLogoColor()})` }}
-      >
-        <img src={logo} alt={name} className="Teams-logo" />
-      </div>
-      <div>
-        <div className="Teams-name" style={{ color: getBarColor() }}>
-          {name}
-        </div>
-        <div className="Teams-score">{getScore()}</div>
-      </div>
-      <ProgressBarComponent
-        value={progressBarValue}
-        barColor={getBarColor()}
-        backgroundColor="#E5E4E2"
-      />
+      {teams.map((team, index) => {
+        const score = getScore(team.score);
+        const progressBarValue = (score / maxScore) * 100;
+        const rank = index + 1;
+
+        return (
+          <div className="TeamsContainer" key={team.id}>
+            <div
+              className="Teams-logo-wrapper"
+              style={{ backgroundImage: `url(${getLogoColor(rank)})` }}
+            >
+              <img src={team.logo} alt={team.name} className="Teams-logo" />
+            </div>
+            <div>
+              <div className="Teams-name" style={{ color: getBarColor(rank) }}>
+                {team.name}
+              </div>
+              <div className="Teams-score">{score}</div>
+            </div>
+            <ProgressBarComponent
+              value={progressBarValue}
+              barColor={getBarColor(rank)}
+              backgroundColor="#E5E4E2"
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };

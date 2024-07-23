@@ -1,6 +1,6 @@
 .ProgressBar {
-  width: 1000px;
+  width: 100vh;
   position: absolute;
-  left: 540px;
   z-index: -1;
+  margin-left: 10vh;
 }
