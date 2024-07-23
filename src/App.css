@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Vifam";
+  src: url("./assets/fonts/Vifam.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .App {
   text-align: center;
 }
@@ -26,6 +33,15 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.App-footer {
+  font-family: "Vifam";
+  font-size: 2vh;
+  color: #f8550f;
+  bottom: 10vh;
+  left: 5vh;
+  position: absolute;
 }
 
 @keyframes App-logo-spin {
