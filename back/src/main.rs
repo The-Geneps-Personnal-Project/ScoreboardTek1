@@ -3,6 +3,7 @@ use postgres::Error as PostgresError;
 use std::net::{TcpListener, TcpStream};
 use std::io::{Read, Write};
 use std::env;
+use std::collections::HashMap;
 
 #[macro_use]
 extern crate serde_derive;
@@ -11,8 +12,7 @@ extern crate serde_derive;
 struct Teams {
     id: Option<i32>,
     name: String,
-    logo: String,
-    score: i32,
+    score: HashMap<String, i32>,
 }
 
 const DB_URL: &str = env!("DATABASE_URL");
@@ -22,17 +22,17 @@ const NOT_FOUND: &str = "HTTP/1.1 404 NOT FOUND\r\n\r\n";
 const INTERNAL_SERVER_ERROR: &str = "HTTP/1.1 500 INTERNAL SERVER ERROR\r\n\r\n";
 
 fn main() {
-    //Set database
+    // Set database
     if let Err(e) = set_database() {
         println!("Error: {}", e);
         return;
     }
 
-    //start server and print port
+    // Start server and print port
     let listener = TcpListener::bind(format!("0.0.0.0:8080")).unwrap();
     println!("Server started at port 8080");
 
-    //handle the client
+    // Handle the client
     for stream in listener.incoming() {
         match stream {
             Ok(stream) => {
@@ -80,13 +80,14 @@ fn handle_connection(mut stream: TcpStream) {
     }
 }
 
-
 fn handle_post_request(req: &str) -> (String, String) {
     match (get_teams_req_body(&req), Client::connect(DB_URL, NoTls)) {
         (Ok(team), Ok(mut client)) => {
+            let score_json = serde_json::to_string(&team.score).unwrap();
+            println!("Score: {}", score_json);
             match client.execute(
-                "INSERT INTO teams (name, logo, score) VALUES ($1, $2, $3)",
-                &[&team.name, &team.logo, &team.score]
+                "INSERT INTO teams (name, score) VALUES ($1, $2)",
+                &[&team.name, &score_json]
             ) {
                 Ok(_) => {
                     let body = "{\"message\": \"Team inserted\"}";
@@ -123,17 +124,18 @@ fn handle_post_request(req: &str) -> (String, String) {
     }
 }
 
-
 fn handle_get_request(req: &str) -> (String, String) {
     match (get_id(&req).parse::<i32>(), Client::connect(DB_URL, NoTls)) {
         (Ok(id), Ok(mut client)) => {
-            match client.query_one("SELECT * FROM teams WHERE id = $1", &[&id]) {
+            match client.query_one("SELECT id, name, score FROM teams WHERE id = $1", &[&id]) {
                 Ok(row) => {
+                    let score_json: String = row.get(2);
+                    let score: HashMap<String, i32> = serde_json::from_str(&score_json).unwrap_or_default();
+
                     let team = Teams {
                         id: Some(row.get(0)),
                         name: row.get(1),
-                        logo: row.get(2),
-                        score: row.get(3),
+                        score: score,
                     };
 
                     match serde_json::to_string(&team) {
@@ -190,12 +192,14 @@ fn handle_get_all_request(_req: &str) -> (String, String) {
         Ok(mut client) => {
             let mut teams = Vec::new();
 
-            for row in client.query("SELECT * FROM teams", &[]).unwrap() {
+            for row in client.query("SELECT id, name, score FROM teams", &[]).unwrap() {
+                let score_json: String = row.get(2);
+                let score: HashMap<String, i32> = serde_json::from_str(&score_json).unwrap_or_default();
+
                 teams.push(Teams {
                     id: Some(row.get(0)),
                     name: row.get(1),
-                    logo: row.get(2),
-                    score: row.get(3),
+                    score: score
                 });
             }
             match serde_json::to_string(&teams) {
@@ -219,9 +223,11 @@ fn handle_get_all_request(_req: &str) -> (String, String) {
 fn handle_put_request(req: &str) -> (String, String) {
     match (get_id(&req).parse::<i32>(), get_teams_req_body(&req), Client::connect(DB_URL, NoTls)) {
         (Ok(id), Ok(team), Ok(mut client)) => {
+            let score_json = serde_json::to_string(&team.score).unwrap();
+
             match client.execute(
-                "UPDATE teams SET name = $1, logo = $2, score = $3 WHERE id = $4",
-                &[&team.name, &team.logo, &team.score, &id]
+                "UPDATE teams SET name = $1, score = $2 WHERE id = $3",
+                &[&team.name, &score_json, &id]
             ) {
                 Ok(rows) => {
                     if rows == 0 {
@@ -326,8 +332,7 @@ fn set_database() -> Result<(), PostgresError> {
         CREATE TABLE IF NOT EXISTS teams (
             id SERIAL PRIMARY KEY,
             name TEXT NOT NULL,
-            logo TEXT NOT NULL,
-            score INT NOT NULL
+            score JSONB NOT NULL
         )
     ")?;
     println!("Database table created");
