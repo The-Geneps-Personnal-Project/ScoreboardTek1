@@ -13,22 +13,20 @@ import Notif from "./assets/Notif.png";
 export interface TeamInfo {
   id: number;
   name: string;
-  logo: string;
+  logo?: string;
   score: Record<string, number>;
 }
 
-interface Team {
-  teams: TeamInfo[];
-}
-
 function App() {
-  const [data, setData] = useState<Team | null>(null);
+  const [data, setData] = useState<TeamInfo[] | null>(null);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/ScoreboardTek1/database/database.json");
+      const response = await fetch("http://localhost:8080/team");
       const data = await response.json();
+      console.log("Data fetched: ", data);
       setData(data);
+      console.log("Data set: ", data);
     } catch (error) {
       console.error("Error fetching the Teams data: ", error);
     }
@@ -50,16 +48,16 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  const totalScores = data.teams.map((team) => getTotalScore(team.score));
+  const totalScores = data.map((team) => getTotalScore(team.score));
   const maxScore = Math.max(...totalScores);
 
-  const sortedTeams = data.teams
+  const sortedTeams = data
     .slice()
     .sort((a, b) => getTotalScore(b.score) - getTotalScore(a.score));
 
   return (
     <>
-      <Background teamNumber={data.teams.length}>
+      <Background teamNumber={data.length}>
         <Wrapper>
           <Header />
           <Teams teams={sortedTeams} maxScore={maxScore} />
