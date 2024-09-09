@@ -96,10 +96,10 @@ function MainPage() {
           <Header />
           <Teams teams={sortedTeams} maxScore={maxScore} />
           <div className="App-footer">tais toi</div>
-          <div
+          {/* <div
             className="App-notif"
             style={{ backgroundImage: `url(${Notif})` }}
-          />
+          /> */}
         </Wrapper>
       </Background>
     </>

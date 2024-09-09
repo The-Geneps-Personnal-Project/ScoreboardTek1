@@ -1,24 +1,46 @@
+.MegaWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .Wrapper {
+  position: relative;
+  /* background-color: blue; */
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: start;
   align-items: center;
-  position: relative;
+  /* margin-top: 100px; */
+  background-image: url('../../assets/BackgroundScore.png');
+  background-repeat: no-repeat;
+  background-position: 50% 72%;
+  background-size: auto 65vh;
+}
+
+.background {
+  /* position: absolute; */
+  /* top: 15px;
+  left: 360px; */
   width: 100%;
 }
 
-.ScoreRedFrame {
+/* #ScoreRedFrame {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  display: flex;
-  width: 125vh;
-  height: 64vh;
-  position: absolute;
+  width: 128vh;
+  height: auto;
   margin-top: 21vh;
   overflow: hidden;
 }
 
-.ScoreBlackFrame {
+#ScoreBlackFrame {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -29,4 +51,4 @@
   margin-top: 20vh;
   margin-left: 2vh;
   overflow: hidden;
-}
+}*/

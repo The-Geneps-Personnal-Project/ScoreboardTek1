@@ -1,14 +1,13 @@
 services:
   back:
     container_name: scoreboard-back
-    image:
     build:
       context: .
       dockerfile: Dockerfile
       args:
         DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
     ports:
-      - '8080:8080'
+      - "8080:8080"
     depends_on:
       - db
 
