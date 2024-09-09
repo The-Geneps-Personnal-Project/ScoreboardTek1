@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   InternalServerErrorException,
+  Logger,
   NotFoundException,
   Param,
   Post,
@@ -45,13 +46,15 @@ export class TeamController {
     @Body() updatedData: Partial<Team>,
   ): Promise<Team> {
     try {
+      Logger.log('Updating team:', id);
       const team = await this.teamRepository.findOneBy({ id });
+      Logger.log('Team found:', team.name);
       if (!team) {
         throw new NotFoundException('Team not found');
       }
 
       Object.assign(team, updatedData);
-
+      Logger.log('Team updated:', team.name);
       return await this.teamRepository.save(team);
     } catch (error) {
       console.error('Error updating team:', error);
