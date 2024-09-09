@@ -1,0 +1,43 @@
+.AuthContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.Login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.Login h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.Login input {
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.Login button {
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: none;
+  background-color: #f8550f;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.Login button:hover {
+  background-color: #f8550f;
+}

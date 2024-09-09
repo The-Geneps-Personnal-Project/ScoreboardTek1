@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import "./Theme.css";
@@ -10,6 +12,10 @@ import { Background } from "./components/Background/Background";
 
 import Notif from "./assets/Notif.png";
 
+import LoginPage from "./pages/LoginPages";
+import ProtectedRoute from "./pages/ProtectedRoute";
+import AdminPanel from "./pages/AdminPanel";
+
 export interface TeamInfo {
   id: number;
   name: string;
@@ -17,7 +23,35 @@ export interface TeamInfo {
   score: Record<string, number>;
 }
 
-function App() {
+const AuthContext = createContext<{
+  isAuthenticated: boolean;
+  login: () => void;
+  logout: () => void;
+}>({
+  isAuthenticated: false,
+  login: () => {},
+  logout: () => {},
+});
+
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const login = () => {
+    setIsAuthenticated(true);
+  };
+
+  const logout = () => {
+    setIsAuthenticated(false);
+  };
+
+  return (
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+function MainPage() {
   const [data, setData] = useState<TeamInfo[] | null>(null);
 
   const fetchData = async () => {
@@ -72,4 +106,26 @@ function App() {
   );
 }
 
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminPanel />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
+}
+
+export { AuthContext };
 export default App;
