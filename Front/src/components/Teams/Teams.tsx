@@ -65,7 +65,7 @@ export const Teams: React.FC<TeamsProps> = (props) => {
               className="Teams-logo-wrapper"
               style={{ backgroundImage: `url(${getLogoColor(rank)})` }}
             >
-              <img src={team.logo} alt={team.name} className="Teams-logo" />
+              {/* <img src={team.logo} alt={team.name} className="Teams-logo" /> */}
             </div>
             <div>
               <div className="Teams-name" style={{ color: getBarColor(rank) }}>

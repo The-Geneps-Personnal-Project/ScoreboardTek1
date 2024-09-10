@@ -10,6 +10,7 @@ const ProgressBar = styled(LinearProgress, {
 })<ProgressBarProps>(({ theme, barColor, backgroundColor }) => ({
   height: "5vh",
   borderRadius: 5,
+  transform: "skewX(-20deg)", 
   [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor:
       backgroundColor ||
@@ -19,8 +20,10 @@ const ProgressBar = styled(LinearProgress, {
     borderRadius: 5,
     backgroundColor:
       barColor || (theme.palette.mode === "light" ? "#1a90ff" : "#308fe8"),
+    transform: "skewX(20deg)",
   },
 }));
+
 
 export default function ProgressBarComponent(props: ProgressBarProps) {
   return (

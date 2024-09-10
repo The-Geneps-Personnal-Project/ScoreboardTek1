@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import "./Theme.css";
@@ -10,25 +12,55 @@ import { Background } from "./components/Background/Background";
 
 import Notif from "./assets/Notif.png";
 
+import LoginPage from "./pages/LoginPages";
+import ProtectedRoute from "./pages/ProtectedRoute";
+import AdminPanel from "./pages/AdminPanel";
+
 export interface TeamInfo {
   id: number;
   name: string;
-  logo: string;
+  logo?: string;
   score: Record<string, number>;
 }
 
-interface Team {
-  teams: TeamInfo[];
-}
+const AuthContext = createContext<{
+  isAuthenticated: boolean;
+  login: () => void;
+  logout: () => void;
+}>({
+  isAuthenticated: false,
+  login: () => {},
+  logout: () => {},
+});
 
-function App() {
-  const [data, setData] = useState<Team | null>(null);
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const login = () => {
+    setIsAuthenticated(true);
+  };
+
+  const logout = () => {
+    setIsAuthenticated(false);
+  };
+
+  return (
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+function MainPage() {
+  const [data, setData] = useState<TeamInfo[] | null>(null);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/ScoreboardTek1/database/database.json");
+      const response = await fetch("http://localhost:8080/team");
       const data = await response.json();
+      console.log("Data fetched: ", data);
       setData(data);
+      console.log("Data set: ", data);
     } catch (error) {
       console.error("Error fetching the Teams data: ", error);
     }
@@ -50,28 +82,50 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  const totalScores = data.teams.map((team) => getTotalScore(team.score));
+  const totalScores = data.map((team) => getTotalScore(team.score));
   const maxScore = Math.max(...totalScores);
 
-  const sortedTeams = data.teams
+  const sortedTeams = data
     .slice()
     .sort((a, b) => getTotalScore(b.score) - getTotalScore(a.score));
 
   return (
     <>
-      <Background teamNumber={data.teams.length}>
+      <Background teamNumber={data.length}>
         <Wrapper>
           <Header />
           <Teams teams={sortedTeams} maxScore={maxScore} />
           <div className="App-footer">tais toi</div>
-          <div
+          {/* <div
             className="App-notif"
             style={{ backgroundImage: `url(${Notif})` }}
-          />
+          /> */}
         </Wrapper>
       </Background>
     </>
   );
 }
 
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminPanel />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
+}
+
+export { AuthContext };
 export default App;

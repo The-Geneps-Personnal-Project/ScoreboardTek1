@@ -1,0 +1,80 @@
+.AdminPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.AdminPanel h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.AdminPanel button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15vh;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: none;
+  background-color: #f8550f;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 5vh;
+}
+
+.AdminPanel button:hover {
+  background-color: #f8550f;
+}
+
+.AdminPanel h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.AdminPanelTeams {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 100vh;
+  width: 100%;
+}
+
+.AdminPanelTeam {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.AdminPanelScores {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.AdminEdit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.AdminPanel input {
+  width: 20vh;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.ScoreEdit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+}

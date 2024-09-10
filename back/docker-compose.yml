@@ -1,7 +1,6 @@
 services:
-  rustapp:
+  back:
     container_name: scoreboard-back
-    image: rustapp:1.0.0
     build:
       context: .
       dockerfile: Dockerfile
@@ -20,7 +19,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
 

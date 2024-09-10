@@ -1,14 +1,25 @@
-.Header {
-  margin-top: 1vh;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+@font-face {
+  font-family: 'Cyberpunk';
+  src: url('../../assets/fonts/Sddystopiandemo-GO7xa.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.HeaderImage {
-  width: 123vh;
-  height: 18vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.Header {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 20vh;
+  margin-top: 50px;
+}
+
+.Header h1 {
+  font-size: 10em;
+  color: #000000;
+  font-family: 'Cyberpunk', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  margin-top: 1vh;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: red;
 }
