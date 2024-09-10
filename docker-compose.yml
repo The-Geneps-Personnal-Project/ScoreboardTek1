@@ -1,8 +1,18 @@
 services:
+  front:
+    container_name: scoreboard-front
+    build:
+      context: ./Front
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - back
+
   back:
     container_name: scoreboard-back
     build:
-      context: .
+      context: ./back
       dockerfile: Dockerfile
       args:
         DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
@@ -19,9 +29,9 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     ports:
-      - '5432:5432'
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
 volumes:
-  pgdata: {}
+  pgdata:
