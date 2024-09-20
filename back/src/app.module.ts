@@ -8,7 +8,7 @@ import { TeamController } from './team/team.controller';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'scoreboard-db',
       port: 5432,
       username: 'postgres',
       password: 'postgres',

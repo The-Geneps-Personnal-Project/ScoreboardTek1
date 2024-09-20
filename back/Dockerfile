@@ -1,19 +1,23 @@
-FROM rust:1.70 as builder
+# Use Node.js 18 as the base image
+FROM node:18
 
+# Set the working directory inside the container
 WORKDIR /app
 
-ARG DATABASE_URL
+# Copy package.json, yarn.lock, and other relevant files
+COPY package.json yarn.lock ./
 
-ENV DATABASE_URL=$DATABASE_URL
+# Install dependencies using Yarn
+RUN yarn install
 
+# Copy the rest of the application code
 COPY . .
 
-RUN cargo build --release
+# Build the TypeScript code
+RUN yarn build
 
-FROM debian:buster-slim
+# Expose the port the app runs on
+EXPOSE 8080
 
-WORKDIR /usr/local/bin
-
-COPY --from=builder /app/target/release/back .
-
-CMD ["./back"]
+# Define the command to run the app
+CMD ["yarn", "start:prod"]
