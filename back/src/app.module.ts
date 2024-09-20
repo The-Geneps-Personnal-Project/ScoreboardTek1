@@ -3,9 +3,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Team } from './entities/team.entity';
 import { TeamController } from './team/team.controller';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'scoreboard-db',

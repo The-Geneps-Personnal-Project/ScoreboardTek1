@@ -4,17 +4,20 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Request } from 'express';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  private readonly validPassword = 'yF2146gzyefut61';
+  constructor(private configService: ConfigService) {}
 
   canActivate(context: ExecutionContext): boolean {
     const request: Request = context.switchToHttp().getRequest();
     const password = request.headers['password'];
 
-    if (!password || password !== this.validPassword) {
+    const validPassword = this.configService.get<string>('REQUEST_PASSWORD');
+
+    if (!password || password !== validPassword) {
       throw new UnauthorizedException('Invalid password');
     }
 
