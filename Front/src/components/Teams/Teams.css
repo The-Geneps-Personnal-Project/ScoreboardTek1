@@ -50,6 +50,7 @@
 .Teams-logo {
   max-width: 65%;
   max-height: 65%;
+  margin-bottom: 5px;
   object-fit: contain;
 }
 

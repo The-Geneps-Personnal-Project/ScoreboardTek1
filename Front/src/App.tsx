@@ -10,7 +10,7 @@ import { Wrapper } from "./components/Wrapper/Wrapper";
 import { Teams } from "./components/Teams/Teams";
 import { Background } from "./components/Background/Background";
 
-import Notif from "./assets/Notif.png";
+// import Notif from "./assets/Notif.png";
 
 import LoginPage from "./pages/LoginPages";
 import ProtectedRoute from "./pages/ProtectedRoute";

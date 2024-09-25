@@ -127,7 +127,7 @@ const AdminPanel = () => {
   };
 
   const handleAddScore = () => {
-    const newKey = `New Score ${Date.now()}`;
+    const newKey = '';
     setTemporaryScores((prevScores) => ({
       ...prevScores,
       [newKey]: { key: newKey, value: 0 },
@@ -141,7 +141,6 @@ const AdminPanel = () => {
 
   const handleCreateTeam = async () => {
     try {
-      // Send a POST request to create a new team
       const response = await fetch("http://localhost:8080/team", {
         method: "POST",
         headers: {
